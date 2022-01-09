@@ -1,7 +1,9 @@
 const fs = require('fs')
 //add
+
 const addStudent = (id,name,grads) => {
-    const students = loadStudents()  
+const students = loadStudents()  
+
     const duplicateTitle = students.find((student)=>{
     
         return student.id === id
@@ -9,12 +11,17 @@ const addStudent = (id,name,grads) => {
     console.log(duplicateTitle) 
  
     if(!duplicateTitle){
+        total =0
+        grads.forEach((grade)=>{
+            total+=parseInt(grade)
+        })
        students.push({  
             id,
             name,
             grads,
-          //total
+           total
         })
+        
       
         saveStudents(students)  
         console.log('student is saved successfuly')
@@ -22,6 +29,7 @@ const addStudent = (id,name,grads) => {
     else{
         console.log('Error ,this student is already saved')
     }
+ 
 }
 const loadStudents = () =>{
 
@@ -41,15 +49,9 @@ const saveStudents = (students) =>{
     const saveData = JSON.stringify(students)
     fs.writeFileSync('students.json',saveData)
 }
-// total of grades
-// const total = 0;
-// students.grads.forEach((el) => {
-//   total = el + total;
-//   return total
-// })
 
 
-// let total = ()=>{return student.grads[0] +student.grads[1] +student.grads[2] }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -97,7 +99,7 @@ const readStudents = (id) =>{
 const listStudents = () =>{
     const students = loadStudents()
     students.forEach((student)=>{
-          console.log('Student id is ' + student.id,' , Student Name is ' + student.name,' , Student grads ' + student.grads)
+          console.log('Student id is ' + student.id,' , Student Name is ' + student.name,' , Student grads ' + student.grads +'  total is ' + student.total )
 
      
     })

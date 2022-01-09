@@ -20,17 +20,13 @@ yargs.command({
             demandOption:true,
             type:'array'
         },
-        // total:{
-        //     describe:'This is total of student',
-        //     type:'number'
-        // },
+    
      
     },
     handler:(x)=>{
  
         details.addStudent(x.id,x.name,x.grads)
 
-        //  console.log(x.grads[0] + x.grads[1]+ x.grads[2])
 
 
 
